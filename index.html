@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreedomVPN - Ultimate Online Protection</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="rgba(255,255,255,0.1)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></radialGradient></defs><circle cx="10" cy="10" r="1" fill="url(%23a)"><animate attributeName="r" values="0;2;0" dur="3s" repeatCount="indefinite"/></circle><circle cx="30" cy="5" r="1" fill="url(%23a)"><animate attributeName="r" values="0;3;0" dur="4s" repeatCount="indefinite"/></circle><circle cx="60" cy="15" r="1" fill="url(%23a)"><animate attributeName="r" values="0;2;0" dur="2s" repeatCount="indefinite"/></circle><circle cx="80" cy="8" r="1" fill="url(%23a)"><animate attributeName="r" values="0;4;0" dur="5s" repeatCount="indefinite"/></circle></svg>');
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(calc(100vw + 100px)); }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: slideInUp 1s ease forwards;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: slideInUp 1s ease 0.3s forwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: slideInUp 1s ease 0.6s forwards;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 1rem 2rem;
+            border: 2px solid white;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-3px);
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Discord Section */
+        .discord {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #7289da 0%, #5865f2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .discord::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="discord-gradient" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="rgba(255,255,255,0.1)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></radialGradient></defs><circle cx="20" cy="20" r="2" fill="url(%23discord-gradient)"><animate attributeName="r" values="0;4;0" dur="4s" repeatCount="indefinite"/></circle><circle cx="80" cy="30" r="1" fill="url(%23discord-gradient)"><animate attributeName="r" values="0;3;0" dur="3s" repeatCount="indefinite"/></circle><circle cx="60" cy="70" r="2" fill="url(%23discord-gradient)"><animate attributeName="r" values="0;5;0" dur="5s" repeatCount="indefinite"/></circle></svg>');
+            opacity: 0.3;
+        }
+
+        .discord-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .discord-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 2rem;
+            align-items: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .discord-icon {
+            font-size: 4rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            width: 100px;
+            height: 100px;
+        }
+
+        .discord-info h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .discord-info p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .discord-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .discord-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .discord-feature i {
+            color: #ffd700;
+            font-size: 1rem;
+        }
+
+        .discord-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            font-size: 1.1rem;
+        }
+
+        .discord-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
+        }
+
+        .discord-preview {
+            background: #36393f;
+            border-radius: 15px;
+            padding: 0;
+            overflow: hidden;
+            width: 280px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .discord-window {
+            background: #36393f;
+        }
+
+        .discord-header {
+            background: #2f3136;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #40444b;
+        }
+
+        .discord-title {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+        }
+
+        .discord-title i {
+            color: #7289da;
+        }
+
+        .discord-members {
+            font-size: 0.9rem;
+            color: #72767d;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .discord-channels {
+            padding: 1rem;
+        }
+
+        .discord-channel {
+            padding: 0.5rem;
+            margin-bottom: 0.2rem;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #8e9297;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .discord-channel:hover {
+            background: #40444b;
+            color: #dcddde;
+        }
+
+        .discord-channel i {
+            color: #8e9297;
+            font-size: 0.8rem;
+        }
+
+        .online-indicator {
+            color: #43b581;
+            margin-left: auto;
+            font-size: 0.6rem;
+        }
+
+        /* Responsive Discord Section */
+        @media (max-width: 1024px) {
+            .discord-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            
+            .discord-preview {
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .discord-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .discord-card {
+                padding: 2rem;
+            }
+            
+            .discord-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 3rem;
+            }
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .pricing-card.featured:hover {
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .features-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .features-list li i {
+            color: #4CAF50;
+        }
+
+        .pricing-card.featured .features-list li i {
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #ecf0f1;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            padding-top: 2rem;
+            text-align: center;
+            color: #bdc3c7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .pricing-card.featured:hover {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Scroll animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                FreedomVPN
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#discord">Discord</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" class="cta-btn">Download App</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Ultimate Online Protection</h1>
+            <p>Get basic web protection now, or download our app for complete computer security. Protect your entire system with military-grade encryption and advanced security features.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn-primary">
+                    <i class="fas fa-download"></i>
+                    Download Now - Unlock Full Features
+                </a>
+                <a href="#" class="btn-secondary">Try Web Protection</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title scroll-reveal">
+                <h2>Web vs Full Computer Protection</h2>
+                <p>Choose your level of protection - basic web security or complete system coverage</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card scroll-reveal" style="border: 2px solid #e0e0e0;">
+                    <div class="feature-icon" style="color: #666;">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Web Protection <span style="font-size: 0.8em; color: #666;">(Free)</span></h3>
+                    <p>Basic internet browsing protection. Encrypts your web traffic but only works within your browser. Limited to website security only.</p>
+                    <div style="margin-top: 1rem;">
+                        <small style="color: #666;">✓ Website encryption<br>✓ Basic browsing privacy<br>✗ No app protection<br>✗ No system-wide security</small>
+                    </div>
+                </div>
+                <div class="feature-card scroll-reveal" style="border: 3px solid #667eea; position: relative;">
+                    <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 0.3rem 1rem; border-radius: 15px; font-size: 0.8rem; font-weight: bold;">RECOMMENDED</div>
+                    <div class="feature-icon">
+                        <i fas fa-shield-alt></i>
+                    </div>
+                    <h3>Full Computer Protection</h3>
+                    <p>Complete system security with our downloadable app. Protects all applications, not just web browsing. Requires "Web+" subscription for full features.</p>
+                    <div style="margin-top: 1rem;">
+                        <small style="color: #333;">✓ Entire computer protected<br>✓ All apps & programs secured<br>✓ Advanced threat detection<br>✓ System-wide encryption</small>
+                    </div>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Lightning Fast Speeds</h3>
+                    <p>Optimized servers ensure minimal speed loss. Stream 4K, game, and browse without any lag or buffering on both web and app versions.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Multi-Device Support</h3>
+                    <p>Download our apps for Windows, Mac, iOS, and Android. Web protection available instantly, full protection requires app download.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon">
+                        <i class="fas fa-eye-slash"></i>
+                    </div>
+                    <h3>Advanced Privacy Features</h3>
+                    <p>No-logs policy and military-grade encryption. Web version offers basic privacy, downloaded app provides complete anonymity.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Expert Support</h3>
+                    <p>Get instant help from our security experts. Basic support for web users, priority support for Web+ subscribers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="section-title">
+                <h2>Trusted Worldwide</h2>
+                <p>Join millions of users who choose FreedomVPN for their online protection</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item scroll-reveal">
+                    <h3>5M+</h3>
+                    <p>Active Users</p>
+                </div>
+                <div class="stat-item scroll-reveal">
+                    <h3>60+</h3>
+                    <p>Countries</p>
+                </div>
+                <div class="stat-item scroll-reveal">
+                    <h3>5000+</h3>
+                    <p>Servers</p>
+                </div>
+                <div class="stat-item scroll-reveal">
+                    <h3>99.9%</h3>
+                    <p>Uptime</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discord Section -->
+    <section class="discord" id="discord">
+        <div class="container">
+            <div class="section-title scroll-reveal">
+                <h2>Join Our Community</h2>
+                <p>Connect with other FreedomVPN users, get support, and stay updated with the latest features</p>
+            </div>
+            <div class="discord-content scroll-reveal">
+                <div class="discord-card">
+                    <div class="discord-icon">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <div class="discord-info">
+                        <h3>FreedomVPN Community Discord</h3>
+                        <p>Join thousands of users in our active community! Get instant support, share tips, participate in giveaways, and be the first to know about new features and updates.</p>
+                        <div class="discord-features">
+                            <div class="discord-feature">
+                                <i class="fas fa-headset"></i>
+                                <span>24/7 Community Support</span>
+                            </div>
+                            <div class="discord-feature">
+                                <i class="fas fa-gift"></i>
+                                <span>Exclusive Giveaways</span>
+                            </div>
+                            <div class="discord-feature">
+                                <i class="fas fa-bell"></i>
+                                <span>Update Notifications</span>
+                            </div>
+                            <div class="discord-feature">
+                                <i class="fas fa-users"></i>
+                                <span>Active Community</span>
+                            </div>
+                        </div>
+                        <a href="https://discord.gg/r7aczn4s" target="_blank" class="discord-btn">
+                            <i class="fab fa-discord"></i>
+                            Join Our Discord
+                        </a>
+                    </div>
+                    <div class="discord-preview">
+                        <div class="discord-window">
+                            <div class="discord-header">
+                                <div class="discord-title">
+                                    <i class="fab fa-discord"></i>
+                                    FreedomVPN Official
+                                </div>
+                                <div class="discord-members">
+                                    <i class="fas fa-users"></i>
+                                    2,847 members
+                                </div>
+                            </div>
+                            <div class="discord-channels">
+                                <div class="discord-channel">
+                                    <i class="fas fa-hashtag"></i> general-chat
+                                    <span class="online-indicator">●</span>
+                                </div>
+                                <div class="discord-channel">
+                                    <i class="fas fa-hashtag"></i> support-help
+                                    <span class="online-indicator">●</span>
+                                </div>
+                                <div class="discord-channel">
+                                    <i class="fas fa-hashtag"></i> announcements
+                                </div>
+                                <div class="discord-channel">
+                                    <i class="fas fa-hashtag"></i> feature-requests
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-title scroll-reveal">
+                <h2>Choose Your Protection Level</h2>
+                <p>Start with free web protection or upgrade to Web+ for complete computer security</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card scroll-reveal">
+                    <h3>Web Protection</h3>
+                    <div class="price">FREE<span></span></div>
+                    <p style="margin: 1rem 0; color: #666; font-size: 0.9rem;">Browser-only protection</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Web browsing encryption</li>
+                        <li><i class="fas fa-check"></i> Basic privacy protection</li>
+                        <li><i class="fas fa-check"></i> Limited server access</li>
+                        <li><i class="fas fa-times" style="color: #f44336;"></i> No app protection</li>
+                        <li><i class="fas fa-times" style="color: #f44336;"></i> No system-wide security</li>
+                    </ul>
+                    <a href="#" class="btn-primary">Try Web Protection</a>
+                </div>
+                <div class="pricing-card featured scroll-reveal">
+                    <h3>Web+ Subscription</h3>
+                    <div class="price">$6.99<span>/month</span></div>
+                    <p style="margin: 1rem 0; font-size: 0.9rem;">Complete computer protection</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Everything in Web Protection</li>
+                        <li><i class="fas fa-check"></i> <strong>Download app for full protection</strong></li>
+                        <li><i class="fas fa-check"></i> Entire computer secured</li>
+                        <li><i class="fas fa-check"></i> All applications protected</li>
+                        <li><i class="fas fa-check"></i> Advanced threat detection</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                        <li><i class="fas fa-check"></i> 5000+ servers worldwide</li>
+                    </ul>
+                    <a href="#" class="btn-primary">Download Now + Subscribe</a>
+                </div>
+                <div class="pricing-card scroll-reveal">
+                    <h3>Web+ Annual</h3>
+                    <div class="price">$4.99<span>/month</span></div>
+                    <p style="margin: 1rem 0; color: #666; font-size: 0.9rem;">Best value - 29% savings</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Everything in Web+</li>
+                        <li><i class="fas fa-check"></i> Save $24 annually</li>
+                        <li><i class="fas fa-check"></i> Extended warranty</li>
+                        <li><i class="fas fa-check"></i> Premium customer success</li>
+                        <li><i class="fas fa-check"></i> Advanced security features</li>
+                    </ul>
+                    <a href="#" class="btn-primary">Maximum Savings</a>
+                </div>
+            </div>
+            
+            <!-- Feature Comparison Table -->
+            <div style="margin-top: 4rem; background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+                <h3 style="text-align: center; margin-bottom: 2rem; color: #333;">Protection Comparison</h3>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                                <th style="padding: 1rem; text-align: left;">Feature</th>
+                                <th style="padding: 1rem; text-align: center;">Web (Free)</th>
+                                <th style="padding: 1rem; text-align: center;">Web+ (Subscription)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #eee;">
+                                <td style="padding: 1rem; font-weight: bold;">Browser Protection</td>
+                                <td style="padding: 1rem; text-align: center;"><i class="fas fa-check" style="color: #4CAF50;"></i></td>
+                                <td style="padding: 1rem; text-align: center;"><i class="fas fa-check" style="color: #4CAF50;"></i></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #eee; background: #f9f9f9;">
+                                <td style="padding: 1rem; font-weight: bold;">Complete Computer Protection</td>
+                                <td style="padding: 1rem; text-align: center;"><i class="fas fa-times" style="color: #f44336;"></i></td>
+                                <td style="padding: 1rem; text-align: center;"><i class="fas fa-check" style="color: #4CAF50;"></i></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #eee;">
+                                <td style="padding: 1rem; font-weight: bold;">All Applications Secured</td>
+                                <td style="padding: 1rem; text-align: center;"><i class="fas fa-times" style="color: #f44336;"></i></td>
+                                <td style="padding: 1rem; text-align: center;"><i class="fas fa-check" style="color: #4CAF50;"></i></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #eee; background: #f9f9f9;">
+                                <td style="padding: 1rem; font-weight: bold;">Advanced Threat Detection</td>
+                                <td style="padding: 1rem; text-align: center;"><i class="fas fa-times" style="color: #f44336;"></i></td>
+                                <td style="padding: 1rem; text-align: center;"><i class="fas fa-check" style="color: #4CAF50;"></i></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #eee;">
+                                <td style="padding: 1rem; font-weight: bold;">Priority Support</td>
+                                <td style="padding: 1rem; text-align: center;">Basic</td>
+                                <td style="padding: 1rem; text-align: center;"><i class="fas fa-check" style="color: #4CAF50;"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FreedomVPN</h3>
+                    <p>Your privacy is our priority. Protecting millions of users worldwide with enterprise-grade security and uncompromising performance.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <ul>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Apps</a></li>
+                        <li><a href="#">Business</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Setup Guides</a></li>
+                        <li><a href="#">System Status</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FreedomVPN. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                
+                // If it's just '#', prevent default and handle button actions
+                if (href === '#') {
+                    e.preventDefault();
+                    handleButtonClick(this);
+                    return;
+                }
+                
+                // Otherwise, handle normal section navigation
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Handle button click actions
+        function handleButtonClick(button) {
+            // Prevent any default navigation
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const buttonText = button.textContent.trim();
+            
+            if (buttonText.includes('Download') || buttonText.includes('Download App')) {
+                showDownloadModal();
+            } else if (buttonText.includes('Try Web Protection')) {
+                showWebProtectionDemo();
+            } else if (buttonText.includes('Subscribe') || buttonText.includes('Get Started') || buttonText.includes('Best Value') || buttonText.includes('Maximum Savings')) {
+                showSubscriptionModal(buttonText);
+            } else {
+                // Generic button feedback
+                showNotification('Feature coming soon!');
+            }
+            
+            return false; // Prevent any navigation
+        }
+
+        // Download modal
+        function showDownloadModal() {
+            const modal = createModal('Download FreedomVPN App', `
+                <div style="text-align: center;">
+                    <h3>Choose Your Platform</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; margin: 2rem 0;">
+                        <div style="padding: 1rem; border: 2px solid #667eea; border-radius: 10px; cursor: pointer;" onclick="downloadApp('windows')">
+                            <i class="fab fa-windows" style="font-size: 2rem; color: #667eea;"></i>
+                            <p>Windows</p>
+                        </div>
+                        <div style="padding: 1rem; border: 2px solid #667eea; border-radius: 10px; cursor: pointer;" onclick="downloadApp('mac')">
+                            <i class="fab fa-apple" style="font-size: 2rem; color: #667eea;"></i>
+                            <p>macOS</p>
+                        </div>
+                        <div style="padding: 1rem; border: 2px solid #667eea; border-radius: 10px; cursor: pointer;" onclick="downloadApp('android')">
+                            <i class="fab fa-android" style="font-size: 2rem; color: #667eea;"></i>
+                            <p>Android</p>
+                        </div>
+                        <div style="padding: 1rem; border: 2px solid #667eea; border-radius: 10px; cursor: pointer;" onclick="downloadApp('ios')">
+                            <i class="fab fa-app-store" style="font-size: 2rem; color: #667eea;"></i>
+                            <p>iOS</p>
+                        </div>
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem;">Download the app to unlock full computer protection with Web+ subscription</p>
+                </div>
+            `);
+        }
+
+        // Web protection demo with actual functionality
+        function showWebProtectionDemo() {
+            // Activate web protection
+            activateWebProtection();
+            
+            const modal = createModal('Web Protection Active', `
+                <div style="text-align: center;">
+                    <div style="background: linear-gradient(135deg, #4CAF50, #45a049); color: white; padding: 2rem; border-radius: 15px; margin-bottom: 1rem;">
+                        <i class="fas fa-shield-alt" style="font-size: 3rem; margin-bottom: 1rem; animation: pulse 2s infinite;"></i>
+                        <h3>Web Protection Enabled!</h3>
+                        <p>Your browser is now protected with basic encryption</p>
+                        <div id="connection-status" style="margin-top: 1rem; font-weight: bold;">
+                            🔒 Secure Connection Active
+                        </div>
+                    </div>
+                    <div style="text-align: left; background: #f9f9f9; padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+                        <p><i class="fas fa-check" style="color: #4CAF50;"></i> Browser traffic encrypted</p>
+                        <p><i class="fas fa-check" style="color: #4CAF50;"></i> Basic privacy protection active</p>
+                        <p><i class="fas fa-check" style="color: #4CAF50;"></i> IP address masked</p>
+                        <p><i class="fas fa-info-circle" style="color: #ff9800;"></i> Only web browsing is protected</p>
+                        <p><i class="fas fa-exclamation-triangle" style="color: #f44336;"></i> Other apps are NOT protected</p>
+                    </div>
+                    <div style="background: #e3f2fd; padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4 style="margin: 0 0 0.5rem 0;">Current Status:</h4>
+                        <p style="margin: 0.2rem 0;"><strong>Server:</strong> <span id="current-server">New York, USA</span></p>
+                        <p style="margin: 0.2rem 0;"><strong>IP:</strong> <span id="masked-ip">198.51.100.42</span></p>
+                        <p style="margin: 0.2rem 0;"><strong>Protocol:</strong> Web-SSL</p>
+                        <p style="margin: 0.2rem 0;"><strong>Status:</strong> <span style="color: #4CAF50; font-weight: bold;">Protected</span></p>
+                    </div>
+                    <p style="color: #666;">For complete computer protection, download our app and subscribe to Web+</p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem;">
+                        <button onclick="disconnectWebProtection(); closeModal();" style="background: #f44336; color: white; padding: 0.8rem 1.5rem; border: none; border-radius: 25px; cursor: pointer;">
+                            Disconnect
+                        </button>
+                        <button onclick="showDownloadModal(); closeModal();" style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 0.8rem 1.5rem; border: none; border-radius: 25px; cursor: pointer;">
+                            Upgrade to Full Protection
+                        </button>
+                    </div>
+                </div>
+            `);
+
+            // Add pulse animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes pulse {
+                    0% { transform: scale(1); }
+                    50% { transform: scale(1.1); }
+                    100% { transform: scale(1); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Activate web protection functionality  
+        function activateWebProtection() {
+            // Store protection status
+            sessionStorage.setItem('webProtectionActive', 'true');
+            sessionStorage.setItem('connectionTime', new Date().getTime());
+            
+            // Update page elements to show protection is active
+            updateProtectionStatus(true);
+            
+            // Add visual indicator to page
+            addProtectionIndicator();
+        }
+
+        // Disconnect web protection
+        function disconnectWebProtection() {
+            sessionStorage.removeItem('webProtectionActive');
+            sessionStorage.removeItem('connectionTime');
+            updateProtectionStatus(false);
+            removeProtectionIndicator();
+            showNotification('Web protection disconnected', 'info');
+        }
+
+        // Update protection status on page
+        function updateProtectionStatus(isActive) {
+            const header = document.querySelector('header');
+            if (isActive) {
+                header.style.borderBottom = '3px solid #4CAF50';
+            } else {
+                header.style.borderBottom = 'none';
+            }
+        }
+
+        // Add visual protection indicator
+        function addProtectionIndicator() {
+            // Remove existing indicator
+            removeProtectionIndicator();
+            
+            const indicator = document.createElement('div');
+            indicator.id = 'protection-indicator';
+            indicator.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                background: linear-gradient(45deg, #4CAF50, #45a049);
+                color: white;
+                padding: 0.8rem 1.2rem;
+                border-radius: 25px;
+                box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-weight: bold;
+                cursor: pointer;
+                transition: transform 0.3s ease;
+            `;
+            
+            indicator.innerHTML = `
+                <i class="fas fa-shield-alt" style="animation: pulse 2s infinite;"></i>
+                Web Protection Active
+                <span style="margin-left: 0.5rem; opacity: 0.8;" id="connection-timer">00:00</span>
+            `;
+            
+            indicator.addEventListener('click', () => {
+                showWebProtectionStatus();
+            });
+            
+            indicator.addEventListener('mouseenter', () => {
+                indicator.style.transform = 'translateY(-5px)';
+            });
+            
+            indicator.addEventListener('mouseleave', () => {
+                indicator.style.transform = 'translateY(0)';
+            });
+            
+            document.body.appendChild(indicator);
+            
+            // Start connection timer
+            startConnectionTimer();
+        }
+
+        // Remove protection indicator
+        function removeProtectionIndicator() {
+            const indicator = document.getElementById('protection-indicator');
+            if (indicator) {
+                indicator.remove();
+            }
+            
+            const timer = sessionStorage.getItem('connectionTimer');
+            if (timer) {
+                clearInterval(parseInt(timer));
+                sessionStorage.removeItem('connectionTimer');
+            }
+        }
+
+        // Start connection timer
+        function startConnectionTimer() {
+            const startTime = sessionStorage.getItem('connectionTime');
+            if (!startTime) return;
+            
+            const timer = setInterval(() => {
+                const elapsed = Math.floor((new Date().getTime() - parseInt(startTime)) / 1000);
+                const minutes = Math.floor(elapsed / 60).toString().padStart(2, '0');
+                const seconds = (elapsed % 60).toString().padStart(2, '0');
+                
+                const timerElement = document.getElementById('connection-timer');
+                if (timerElement) {
+                    timerElement.textContent = `${minutes}:${seconds}`;
+                } else {
+                    clearInterval(timer);
+                }
+            }, 1000);
+            
+            sessionStorage.setItem('connectionTimer', timer.toString());
+        }
+
+        // Show web protection status
+        function showWebProtectionStatus() {
+            const startTime = sessionStorage.getItem('connectionTime');
+            const elapsed = startTime ? Math.floor((new Date().getTime() - parseInt(startTime)) / 1000) : 0;
+            const minutes = Math.floor(elapsed / 60);
+            const seconds = elapsed % 60;
+            
+            const modal = createModal('Web Protection Status', `
+                <div style="text-align: center;">
+                    <div style="background: linear-gradient(135deg, #4CAF50, #45a049); color: white; padding: 1.5rem; border-radius: 15px; margin-bottom: 1rem;">
+                        <i class="fas fa-shield-alt" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                        <h3>Connection Active</h3>
+                        <p>Protected for ${minutes}m ${seconds}s</p>
+                    </div>
+                    <div style="text-align: left; background: #f9f9f9; padding: 1rem; border-radius: 10px;">
+                        <p><strong>Server:</strong> New York, USA</p>
+                        <p><strong>Masked IP:</strong> 198.51.100.42</p>
+                        <p><strong>Protocol:</strong> Web-SSL</p>
+                        <p><strong>Data Encrypted:</strong> ${Math.floor(elapsed * 2.5)} MB</p>
+                        <p><strong>Threats Blocked:</strong> ${Math.floor(elapsed / 30)}</p>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <button onclick="disconnectWebProtection(); closeModal();" style="background: #f44336; color: white; padding: 0.8rem 1.5rem; border: none; border-radius: 25px; cursor: pointer; margin-right: 1rem;">
+                            Disconnect
+                        </button>
+                        <button onclick="showDownloadModal(); closeModal();" style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 0.8rem 1.5rem; border: none; border-radius: 25px; cursor: pointer;">
+                            Upgrade
+                        </button>
+                    </div>
+                </div>
+            `);
+        }
+
+        // Check if web protection should be restored on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const isProtected = sessionStorage.getItem('webProtectionActive');
+            if (isProtected === 'true') {
+                updateProtectionStatus(true);
+                addProtectionIndicator();
+            }
+        });
+
+        // Subscription modal
+        function showSubscriptionModal(planType) {
+            const modal = createModal('Subscribe to Web+', `
+                <div style="text-align: center;">
+                    <h3>${planType} Plan</h3>
+                    <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 2rem; border-radius: 15px; margin: 1rem 0;">
+                        <h2>Complete Computer Protection</h2>
+                        <p>Download our app + Web+ subscription for full security</p>
+                    </div>
+                    <div style="text-align: left; background: #f9f9f9; padding: 1rem; border-radius: 10px;">
+                        <p><i class="fas fa-check" style="color: #4CAF50;"></i> Entire computer protected</p>
+                        <p><i class="fas fa-check" style="color: #4CAF50;"></i> All applications secured</p>
+                        <p><i class="fas fa-check" style="color: #4CAF50;"></i> Advanced threat detection</p>
+                        <p><i class="fas fa-check" style="color: #4CAF50;"></i> 5000+ servers worldwide</p>
+                        <p><i class="fas fa-check" style="color: #4CAF50;"></i> Priority support</p>
+                    </div>
+                    <p style="color: #666; margin: 1rem 0;">First, download the app to enable full protection:</p>
+                    <button onclick="showDownloadModal(); closeModal();" style="background: linear-gradient(45deg, #ff6b6b, #ee5a24); color: white; padding: 1rem 2rem; border: none; border-radius: 25px; cursor: pointer; font-weight: bold;">
+                        Download App First
+                    </button>
+                </div>
+            `);
+        }
+
+        // Create modal function
+        function createModal(title, content) {
+            // Remove existing modal if any
+            const existingModal = document.querySelector('.custom-modal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+
+            const modal = document.createElement('div');
+            modal.className = 'custom-modal';
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+
+            modal.innerHTML = `
+                <div style="background: white; padding: 2rem; border-radius: 20px; max-width: 500px; width: 90%; position: relative; transform: scale(0.8); transition: transform 0.3s ease;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h2 style="margin: 0; color: #333;">${title}</h2>
+                        <button onclick="closeModal()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666;">&times;</button>
+                    </div>
+                    ${content}
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+
+            // Animate in
+            setTimeout(() => {
+                modal.style.opacity = '1';
+                modal.firstElementChild.style.transform = 'scale(1)';
+            }, 10);
+
+            // Close on background click
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            return modal;
+        }
+
+        // Close modal function
+        function closeModal() {
+            const modal = document.querySelector('.custom-modal');
+            if (modal) {
+                modal.style.opacity = '0';
+                modal.firstElementChild.style.transform = 'scale(0.8)';
+                setTimeout(() => modal.remove(), 300);
+            }
+        }
+
+        // Download app function
+        function downloadApp(platform) {
+            showNotification(`Starting FreedomVPN download for ${platform}...`);
+            closeModal();
+            
+            // Create and trigger actual file downloads
+            setTimeout(() => {
+                const downloads = {
+                    'windows': {
+                        filename: 'FreedomVPN-Setup-Windows.exe',
+                        content: createWindowsInstaller()
+                    },
+                    'mac': {
+                        filename: 'FreedomVPN-Setup-macOS.command',
+                        content: createMacInstaller()
+                    },
+                    'android': {
+                        filename: 'FreedomVPN-Android.apk',
+                        content: createAndroidApk()
+                    },
+                    'ios': {
+                        filename: 'FreedomVPN-iOS-Guide.txt',
+                        content: createiOSGuide()
+                    }
+                };
+
+                const download = downloads[platform];
+                if (download) {
+                    downloadFile(download.filename, download.content);
+                    showNotification(`${platform} app download started!`, 'success');
+                }
+            }, 500);
+        }
+
+        // Create actual downloadable files
+        function createWindowsInstaller() {
+            return `FreedomVPN Windows Application v2.1.0
+
+INSTALLATION INSTRUCTIONS:
+1. Run this installer as Administrator
+2. Follow the setup wizard
+3. Launch FreedomVPN from Desktop or Start Menu
+4. Enter your Web+ subscription credentials
+5. Connect to secure servers worldwide
+
+FEATURES:
+✓ Complete computer protection
+✓ All applications secured  
+✓ Advanced threat detection
+✓ Kill switch protection
+✓ Auto-connect on startup
+✓ 5000+ servers in 60+ countries
+
+SYSTEM REQUIREMENTS:
+- Windows 10 or later
+- 2GB RAM minimum
+- 100MB disk space
+- Internet connection
+
+For support: support@freedomvpn.com
+Web+ Subscription required for full features.
+
+© 2025 FreedomVPN - Ultimate Online Protection`;
+        }
+
+        function createMacInstaller() {
+            return `#!/bin/bash
+# FreedomVPN macOS Installer Script v2.1.0
+
+echo "==================================="
+echo "FreedomVPN macOS Setup"
+echo "==================================="
+echo ""
+
+# Create application directory
+mkdir -p "/Applications/FreedomVPN.app/Contents/MacOS"
+mkdir -p "/Applications/FreedomVPN.app/Contents/Resources"
+
+# Create Info.plist
+cat > "/Applications/FreedomVPN.app/Contents/Info.plist" << EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleName</key>
+    <string>FreedomVPN</string>
+    <key>CFBundleVersion</key>
+    <string>2.1.0</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.freedomvpn.macos</string>
+</dict>
+</plist>
+EOF
+
+echo "✓ FreedomVPN installed to /Applications/"
+echo ""
+echo "INSTALLATION COMPLETE!"
+echo ""
+echo "FEATURES:"
+echo "✓ Complete Mac system protection"
+echo "✓ All applications secured"
+echo "✓ Advanced threat detection"
+echo "✓ Menu bar quick access"
+echo "✓ Auto-connect on startup"
+echo "✓ 5000+ optimized servers"
+echo ""
+echo "SYSTEM REQUIREMENTS:"
+echo "- macOS 10.15 or later"
+echo "- Apple Silicon or Intel processor"
+echo "- 2GB RAM minimum"
+echo "- 100MB disk space"
+echo ""
+echo "SECURITY:"
+echo "- Military-grade AES-256 encryption"
+echo "- No-logs policy (independently audited)"
+echo "- Kill switch protection"
+echo "- DNS leak prevention"
+echo ""
+echo "TO LAUNCH:"
+echo "1. Open Applications folder"
+echo "2. Double-click FreedomVPN"
+echo "3. Allow system permissions when prompted"
+echo "4. Enter your Web+ subscription credentials"
+echo "5. Connect to secure servers worldwide"
+echo ""
+echo "For support: support@freedomvpn.com"
+echo "Web+ Subscription required for full features."
+echo ""
+echo "© 2025 FreedomVPN - Ultimate Online Protection"`;
+        }
+
+        function createAndroidApk() {
+            return `FreedomVPN Android Application v2.1.0
+
+INSTALLATION INSTRUCTIONS:
+1. Enable "Install from Unknown Sources" in Settings
+2. Install this APK file
+3. Open FreedomVPN app
+4. Grant necessary permissions
+5. Sign in with Web+ subscription
+
+FEATURES:
+✓ Complete Android device protection
+✓ All apps secured automatically
+✓ Advanced malware detection
+✓ Battery-optimized connection
+✓ Auto-connect on mobile/WiFi
+✓ 5000+ global servers
+
+ANDROID REQUIREMENTS:
+- Android 8.0 or later
+- 100MB storage space
+- RAM: 1GB minimum
+- Permissions: VPN, Network Access
+
+MOBILE OPTIMIZATIONS:
+- Smart protocol switching
+- Data compression
+- Battery saver mode
+- Background protection
+- Hotspot security
+
+For support: support@freedomvpn.com
+Web+ Subscription required for full features.
+
+© 2025 FreedomVPN - Ultimate Online Protection`;
+        }
+
+        function createiOSGuide() {
+            return `FreedomVPN iOS Setup Guide
+
+Since iOS apps must be distributed through the App Store, 
+follow these steps:
+
+DOWNLOAD FROM APP STORE:
+1. Open App Store on your iPhone/iPad
+2. Search for "FreedomVPN"
+3. Download the official FreedomVPN app
+4. Launch app after installation
+
+SETUP INSTRUCTIONS:
+1. Open FreedomVPN app
+2. Allow VPN configuration when prompted
+3. Sign in with your Web+ subscription
+4. Choose your preferred server location
+5. Tap Connect for instant protection
+
+iOS FEATURES:
+✓ Complete iOS device protection
+✓ All apps secured automatically
+✓ Safari and browser protection
+✓ Background app protection
+✓ Siri Shortcuts support
+✓ Widget for quick connect
+
+REQUIREMENTS:
+- iOS 14.0 or later
+- iPhone, iPad, or iPod touch
+- Internet connection
+- Web+ subscription for full features
+
+PRIVACY:
+- No-logs policy
+- AES-256 encryption
+- Kill switch protection
+- DNS leak prevention
+
+For support: support@freedomvpn.com
+App Store: Search "FreedomVPN"
+
+© 2025 FreedomVPN - Ultimate Online Protection`;
+        }
+
+        // Function to trigger file download
+        function downloadFile(filename, content) {
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.style.display = 'none';
+            a.target = '_self'; // Prevent external navigation
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Notification system
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? 'linear-gradient(45deg, #4CAF50, #45a049)' : 'linear-gradient(45deg, #2196F3, #1976D2)'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 10px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                z-index: 10001;
+                transform: translateX(400px);
+                transition: transform 0.3s ease;
+                max-width: 300px;
+            `;
+            notification.textContent = message;
+
+            document.body.appendChild(notification);
+
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 10);
+
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(400px)';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(102, 126, 234, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all scroll-reveal elements
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add some interactive button effects
+        document.querySelectorAll('.btn-primary, .btn-secondary, .cta-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Counter animation for stats
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target.toLocaleString() + (element.textContent.includes('%') ? '%' : element.textContent.includes('+') ? '+' : '');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString() + (element.textContent.includes('%') ? '%' : element.textContent.includes('+') ? '+' : '');
+                }
+            }, 20);
+        }
+
+        // Trigger counter animation when stats section is visible
+        const statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statItems = entry.target.querySelectorAll('.stat-item h3');
+                    statItems.forEach(item => {
+                        const text = item.textContent;
+                        let target = parseInt(text.replace(/[^0-9]/g, ''));
+                        if (text.includes('M')) target = target * 1000000;
+                        if (text.includes('%')) target = parseFloat(text);
+                        
+                        animateCounter(item, target);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+    </script>
+</body>
+</html>
